@@ -57,11 +57,12 @@ export class HomeComponent implements OnInit {
       this.treksService.getTreks().subscribe((data) => {
         this.treks = data
       }, (err) => {
-        if(err.statusText==='Unauthorized'){
+        if (err.statusText === 'Unauthorized') {
           this.router.navigate([''])
+        } else {
+          alert('Sorry we could not load any treks')
+          this.router.navigate(['could-not-load-treks'])
         }
-        alert('Sorry we could not load any treks')
-        this.router.navigate(['could-not-load-treks'])
       })
     }
   }
