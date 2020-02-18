@@ -1,0 +1,46 @@
+<div *ngIf="this.loggdIn ? this.isLoggedRedirect():false"></div>
+<form #regForm="ngForm" (ngSubmit)="registerHandler(form.value)">
+
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    <p>Join our family and make a wish!</p>
+  </div>
+
+  <div class="form-label-group">
+    <input #usernameInput="ngModel" type="text" ngModel id="inputUsername" name="username" class="form-control"
+      placeholder="Username" [pattern]="loginRegex" required="">
+    <label style="color: gray" *ngIf="usernameInput.invalid">*Username should consists of at least 6
+      characters</label>
+    <label for="inputUsername">Username</label>
+  </div>
+
+  <div #passwordsGroup="ngModelGroup" ngModelGroup='passwords'>
+    <div class="form-label-group">
+      <input #passwordInput="ngModel" type="password" ngModel id="inputPassword" name="password" class="form-control"
+        placeholder="Password" [pattern]="passwordRegex" required="">
+      <label style="color:gray" *ngIf="passwordsGroup.invalid">*Should consists of
+        at least six
+        characters, at least one letter, one number and one special character</label>
+      <label for="inputPassword">Password</label>
+    </div>
+    <div class="form-label-group">
+      <input #rePasswordInput="ngModel" type="password" ngModel id="inputPassword" name="rePassword"
+        class="form-control" placeholder="Re-Password" [pattern]="passwordRegex" required="">
+      <label style="color:gray " *ngIf=" passwordsGroup.invalid">*Should match
+        the Password field</label>
+      <label for="inputUsername">Re-Password</label>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <button [disabled]="!regForm.valid" class="btn btn-lg btn-dark btn-block">Sign
+    Up</button>
+
+  <div class="text-center mb-4">
+ 
+    <p class="alreadyUser"> Already have account? Then just
+      <a routerLink="/login">Sign-In</a>!
+    </p>
+  </div>
+</form>

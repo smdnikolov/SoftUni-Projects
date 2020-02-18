@@ -1,0 +1,56 @@
+<p id="success" class="success fade-out">You have logged in successfully.</p>
+
+<div *ngIf="!treks && userService.isAuth" class="">
+    <div class="loader "></div>
+    <div style="text-align:center;" class="home d-md-flex flex-md-equal  my-md-3 pl-md-3">
+        <h3> Loading, please wait ...</h3>
+    </div>
+</div>
+
+<div *ngIf="userService.isAuth && treks" id="treks-list">
+    <a *ngFor="let trek of treks" (click)="selectTrekHandler(trek)"
+        class="card overflow-hidden treksPlaceholder trek-details" style="width: 20rem; height: 30rem;">
+        <div class="card-body">
+            <p class="card-text">{{trek.location}}</p>
+        </div>
+        <img class="card-image" src={{trek.imageURL}} alt="Card image cap">
+    </a>
+</div>
+
+<div *ngIf="userService.isAuth && treks && treks.length===0" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="fouronefour">
+                <img class="no-found-picture" src='../../../assets/empty.jpg'>
+            </div>
+            <div class="no-found-template">
+                <h1>
+                    There aren't any treks, yet!</h1>
+                <h2>
+                    What do you have in mind?</h2>
+                <div class="no-found-details">
+                    Be the first explorer!
+                </div>
+                <div class="actions">
+                    <a routerLink="/request" class="btn btn-dark btn-lg">Create the first trek? </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf='!userService.isAuth' class="home d-md-flex flex-md-equal  my-md-3 pl-md-3 ">
+    <div style=" padding-left: 7%; padding-top:3%;" class="col-md-7">
+        <h2 class="featurette-heading">Here you will find the treks you've <span class="text-highlighted">always dreamed
+                about!</span></h2>
+        <p class="lead">1. Join our family.</p>
+        <p style="padding-left:5%" class="lead">2. Request the trek you've always wanted.</p>
+        <p style="padding-left:10%" class="lead">3. Find people who like your idea.</p>
+        <p class="lead">If you find enough supporters, we will organize everything for you!</p>
+    </div>
+    <div class="col-md-5">
+        <img class="home-picture" src="assets/mountainLogo.png" />
+    </div>
+</div>

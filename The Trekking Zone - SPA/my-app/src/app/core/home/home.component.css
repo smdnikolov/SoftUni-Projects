@@ -1,0 +1,78 @@
+.success {
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    padding: 20px;
+    background-color: #36f4364f;
+    color: white;
+   
+  }
+
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+
+  .fade-out {
+    animation: fadeOut ease 3s;
+    -webkit-animation: fadeOut ease 3s;
+    -moz-animation: fadeOut ease 3s;
+    -o-animation: fadeOut ease 3s;
+    -ms-animation: fadeOut ease 3s;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-o-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-ms-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+  }
+}

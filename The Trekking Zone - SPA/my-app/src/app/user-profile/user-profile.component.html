@@ -1,0 +1,25 @@
+<div *ngIf="!treks" class="">
+  <div class="loader "></div>
+  <div style="text-align:center;" class="home d-md-flex flex-md-equal  my-md-3 pl-md-3">
+    <h3>   Loading, please wait ...</h3>
+  </div>
+</div>
+
+<div *ngIf="treks" class="home d-md-flex flex-md-equal  my-md-3 pl-md-3">
+  <div style="text-align: center;" class="profile-info">
+    <img class="profile-img" src="../../assets/user.png" />
+    <p>Username: <small>{{this.username}}</small></p>
+    <p class="infoType">Treks you have requested:</p>
+    <div *ngIf="treks.length>0">
+      <p *ngFor="let trek of treks;">
+        {{trek.location}}
+      </p>
+    </div>
+    <div *ngIf="this.treks.length===0">
+      <p>You have not requested any treks yet.</p>
+      <div class="actions">
+        <a routerLink="/request" class="btn btn-dark btn-lg">Create your first trek? </a>
+      </div>
+    </div>
+  </div>
+</div>

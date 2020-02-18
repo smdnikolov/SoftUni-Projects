@@ -1,0 +1,56 @@
+<div *ngIf="!trektoEdit">
+  <div class="loader "></div>
+  <div style="text-align:center;" class="home d-md-flex flex-md-equal  my-md-3 pl-md-3">
+    <h3>   Loading, please wait ...</h3>
+  </div>
+</div>
+
+<div *ngIf="trektoEdit">
+  <form class="create-trek" [formGroup]="editForm" (ngSubmit)="editMyTrek()">
+    <div class="text-center mb-4">
+      <h1 class="h3 mb-3 font-weight-normal">Edit your trek</h1>
+    </div>
+
+    <div class="form-label-group">
+      <label for="location">Location</label>
+      <input type="text" formControlName="location" class="form-control" placeholder="Location"
+        [pattern]="regex.inputRegex" required>
+      <label style="color:gray" *ngIf="editForm.controls['location'].invalid">*Should consists of at least six
+        characters</label>
+    </div>
+
+    <div class="form-label-group">
+      <label for="dateTime">Date</label>
+      <input type="text" formControlName="dateTime" class="form-control" placeholder="Date" [pattern]="regex.dateRegex"
+        required>
+      <label style="color:gray" *ngIf="editForm.controls['dateTime'].invalid">*Should be in format: dd-mm-yyyy</label>
+    </div>
+
+    <div class="form-label-group">
+      <label for="description">Description</label>
+      <textarea type="text" formControlName="description" class="form-control" maxlength="5000" minlength="20"
+        placeholder="Description" required></textarea>
+      <label style="color:gray" *ngIf="editForm.controls['description'].invalid">*Should consist of at least twenty
+        characters</label>
+    </div>
+
+    <div class="form-label-group">
+      <label for="imageURL">Date</label>
+      <input type="text" formControlName="imageURL" class="form-control" placeholder="Image URL"
+        [pattern]="regex.imageURLRegex" required>
+      <label style="color:gray" *ngIf="editForm.controls['imageURL'].invalid">*Should be a valid image URL, starting
+        with
+        "https://"</label>
+    </div>
+
+    <div class="form-label-group">
+      <label for="email">Date</label>
+      <input type="text" formControlName="email" class="form-control" placeholder="Email" [pattern]="regex.emailRegex"
+        required>
+      <label style="color:gray" *ngIf="editForm.controls['email'].invalid">*should a valid email</label>
+    </div>
+    <br>
+    <br>
+    <button [disabled]="!editForm.valid" class="btn btn-lg btn-dark btn-block">Edit Trek</button>
+  </form>
+</div>

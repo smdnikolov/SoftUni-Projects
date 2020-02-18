@@ -1,0 +1,33 @@
+<div *ngIf="this.loggdIn ? this.isLoggedRedirect():false"></div>
+<form #loginForm="ngForm" (ngSubmit)="loginHandler(loginForm.value)">
+
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+  </div>
+
+  <div class="form-label-group">
+    <input #usernameInput="ngModel" type="text" ngModel id="inputUsername" name="username" class="form-control"
+      placeholder="Username" [pattern]="loginRegex" required="">
+    <label style="color:gray" *ngIf="usernameInput.invalid">*Username should consists of at least six
+      characters</label>
+    <label for="inputUsername">Username</label>
+  </div>
+
+  <div class="form-label-group">
+    <input #passwordInput="ngModel" type="password" ngModel id="inputPassword" name="password" class="form-control"
+      placeholder="Password" [pattern]="passwordRegex" required="">
+    <label style="color:gray" *ngIf="passwordInput.invalid">*Should consists of at least six
+      characters, at least one letter, one number and one special character</label>
+    <label for="inputPassword">Password</label>
+  </div>
+
+  <button [disabled]="loginForm.invalid" class="btn btn-lg btn-dark btn-block">Sign In</button>
+
+  <div class="text-center mb-4">
+    <br>
+    <br>
+    <p class="alreadyUser"> Don't have account? Then just
+      <a routerLink="/register">Sign-Up</a>!
+    </p>
+  </div>
+</form>

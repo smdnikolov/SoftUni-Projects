@@ -1,0 +1,48 @@
+<div *ngIf="!this.loggdIn ? this.notLoggedRedirect():false"></div>
+
+<form class="create-trek" #reqForm="ngForm" (ngSubmit)="requestHandler()">
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Wish for a new adventure!</h1>
+    <p>Fill up the following information!</p>
+  </div>
+
+  <div class="form-label-group">
+    <label for="location">Location</label>
+    <input #locationInput="ngModel" type="text" ngModel name="location" class="form-control" placeholder="Location"
+      [pattern]="regex.inputRegex" required="">
+    <label style="color:gray" *ngIf="locationInput.invalid">*Should consists of at least six
+      characters</label>
+  </div>
+
+  <div class="form-label-group">
+    <label for="dateTime">Date</label>
+    <input #dateTimeInput="ngModel" type="text" ngModel name="dateTime" class="form-control" placeholder="Date"
+      [pattern]="regex.dateRegex" required="">
+    <label style="color:gray" *ngIf="dateTimeInput.invalid">*Should be in format: dd-mm-yyyy</label>
+  </div>
+
+  <div class="form-label-group">
+    <label for="description">Description</label>
+    <textarea #descriptionText="ngModel" type="text" ngModel name="description" class="form-control" maxlength="5000"
+      minlength="20" placeholder="Description" required=""></textarea>
+    <label style="color:gray" *ngIf="descriptionText.invalid">*Should consist of at least 20 characters</label>
+  </div>
+
+  <div class="form-label-group">
+    <label for="imageURL">Date</label>
+    <input #imageURLnput="ngModel" type="text" ngModel name="imageURL" class="form-control" placeholder="Image URL"
+      [pattern]="regex.imageURLRegex" required="">
+    <label style="color:gray" *ngIf="imageURLnput.invalid">*Should be a valid image URL, starting with
+      "https://"</label>
+  </div>
+
+  <div class="form-label-group">
+    <label for="email">Date</label>
+    <input #emailInput="ngModel" type="text" ngModel name="email" class="form-control" placeholder="Email"
+      [pattern]="regex.emailRegex" required="">
+    <label style="color:gray" *ngIf="emailInput.invalid">*Should be a valid email</label>
+  </div>
+  <br>
+  <br>
+  <button [disabled]="reqForm.invalid" class="btn btn-lg btn-dark btn-block">Request</button>
+</form>
