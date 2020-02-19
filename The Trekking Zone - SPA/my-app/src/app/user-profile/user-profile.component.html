@@ -13,6 +13,9 @@
     <div *ngIf="treks.length>0">
       <p *ngFor="let trek of treks;">
         {{trek.location}}
+        <span>
+          <button style="background-color: transparent;" (click)="addButton($event)" id={{trek._id}}>View Trek</button>
+        </span>
       </p>
     </div>
     <div *ngIf="this.treks.length===0">
