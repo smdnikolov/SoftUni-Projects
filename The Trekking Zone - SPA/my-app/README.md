@@ -1,6 +1,7 @@
 # MyApp
 
 ## First thing to do
+
 Do not forget to type npm -install in your console to install the node_modules
 
 ## Project requeirments
