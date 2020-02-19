@@ -30,8 +30,8 @@ export class UserProfileComponent implements OnInit {
 
   get username() { return localStorage.getItem('username') };
   addButton(event: { target: any; srcElement: any; currentTarget: any; }) {
-    var target = event.target || event.srcElement || event.currentTarget;
-    var idAttr = target.attributes.id;
+    let target = event.target || event.srcElement || event.currentTarget;
+    let idAttr = target.attributes.id;
     localStorage.setItem('trekId', idAttr.value)
     this.router.navigate([`details/${idAttr.value}`])
   }
