@@ -1,13 +1,10 @@
 <template>
   <div class="container-fluid">
-    <h1>Hello World!</h1>
-    <p>Resize the browser window to see the effect.</p>
     <div class="row">
       <div class="col-m-1">
         <div class="post">
-          <h2>Post title Post titlePost titlePost titlePost titlePost titlePost titlePost titlePost title
-              Post title Post titlePost titlePost titlePost titlePost titlePost titlePost titlePost title
-              Post title Post titlePost titlePost titlePost titlePost titlePost titlePost titlePost title
+          <h2>
+           Creative Title
           </h2>
           <a href class="card overflow-hidden postPlaceholder post-details">
             <img class="card-image" src="https://img-9gag-fun.9cache.com/photo/a85xZbO_460s.jpg" />
@@ -71,14 +68,17 @@ export default {
 
 
 <style scoped>
-.row{
-     text-align: center;
+.container-fluid{
+ margin: 50px;
+}
+.row {
+  text-align: center;
   padding: 30px;
   overflow-wrap: break-word;
 }
 .col-m-1 {
-    display:inline-block;
-    width:800px;
+  display: inline-block;
+  width: 800px;
 }
 .post {
   padding: 30px;

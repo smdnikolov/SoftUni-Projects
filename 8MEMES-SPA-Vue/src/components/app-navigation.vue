@@ -2,22 +2,10 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">8MEMES</a>
+        <a href="/">
+          <img src="../assets/lоgo.jpg" style="width:100px" />
+        </a>
       </div>
-      <ul class="nav navbar-nav">
-        <li >
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">Page 1</a>
-        </li>
-        <li>
-          <a href="#">Page 2</a>
-        </li>
-        <li>
-          <a href="#">Page 3</a>
-        </li>
-      </ul>
     </div>
   </nav>
 </template>
@@ -31,8 +19,20 @@ export default {
 
 
 <style scoped>
-.navbar{
-background: #555
-border-rad
+.navbar {
+  background: black;
+  text-align: center;
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+}
+.navbar-header {
+  display: inline-block;
+  margin: auto;
+  width: 100%;
+}
+.navbar-default {
+  border-color: black;
 }
 </style>
