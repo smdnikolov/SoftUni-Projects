@@ -1,13 +1,20 @@
 <template>
   <div class="sidenav">
     <a href="/hot">
-      <img class="hot" src="../assets/hot.png" />Hot
+      <span>
+        <img class="hot" src="../assets/hot.png" width="24" height="24" />
+      </span> Hot
     </a>
     <a href="/trending">
-      <img class="trending" src="../assets/trending-up-1486430-1257239.png" /> Trending
+      <span>
+        <img src="../assets/trending-up-1486430-1257239.png" width="24" height="24" />
+      </span> Trending
     </a>
     <a href="/fresh">
-      <img class="fresh" src="../assets/fresh.png" />Fresh
+      <span>
+        <img src="../assets/fresh.png" width="24" height="24" />
+      </span>
+      Fresh
     </a>
   </div>
 </template>
@@ -22,13 +29,7 @@ export default {
 
 <style scoped>
 .sidenav {
-  width: 130px;
-  position: fixed;
-  z-index: 1;
-  top: 80px;
-  left: 160px;
-  overflow-x: hidden;
-  padding: 8px 0;
+  display:inline;
 }
 
 .sidenav a {
@@ -36,48 +37,10 @@ export default {
   text-decoration: none;
   font-size: 25px;
   color: gray;
-  display: block;
+  display: inline-block;
 }
 
 .sidenav a:hover {
   color: #064579;
-}
-
-.main {
-  margin-left: 140px; /* Same width as the sidebar + left position in px */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-.trending {
-  position: fixed;
-  width: 24px;
-  height: 24px;
-  left: 150px;
-  top: 146px;
-  margin-left: -20px;
-}
-.hot {
-  position: fixed;
-  width: 24px;
-  height: 24px;
-  left: 150px;
-  top: 100px;
-  margin-left: -20px;
-}
-.fresh {
-  position: fixed;
-  width: 24px;
-  height: 24px;
-  left: 150px;
-  top: 190px;
-  margin-left: -20px;
-}
-.sidenav a:active {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: black;
-  display: block;
- 
 }
 </style>

@@ -23,12 +23,15 @@ export default {
   background: black;
   text-align: center;
   overflow: hidden;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
+  top:10%;
+  position: fixed;
+  top: 0; 
+  width: 100%; 
+  z-index: 1;
+  padding:5px;
 }
 .navbar-header {
-  display: inline-block;
+  display: list-item;
   margin: auto;
   width: 100%;
 }
