@@ -1,6 +1,7 @@
 <template>
   <footer>
     <div class="copyright">
+      
       <p>Keep Yourself Infinitely Memed</p>
       <p>8Memes © 2020</p>
     </div>
@@ -10,7 +11,12 @@
 <script>
 export default {
   name: "appFooter",
-  props: {}
+  props: {},
+  data() {
+    return {
+
+    };
+  }
 };
 </script>
 

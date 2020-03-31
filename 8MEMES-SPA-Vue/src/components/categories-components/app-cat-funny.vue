@@ -1,47 +1,42 @@
 <template>
-  <div class="row">
-    <div class="col-sm-4 center">
-      <div v-for="post in posts" :key="post.id" class="post">
-        <h2>{{post.title}}</h2>
-        <a href class="card overflow-hidden postPlaceholder post-details">
-          <img class="card-image" :src="post.url" />
-        </a>
-        <div class="post-info">
-          <span>
-            <a href="#">{{post.points}} points</a>
-          </span> ·
-          <span>
-            <a href="#">{{post.comments.length}} comments</a>
+  <h1>Funny Memes
+    <div class="row">
+      <h1></h1>
+      <div class="col-sm-4 center">
+        <div v-for="post in posts" :key="post.id" class="post">
+          <h2>{{post.title}}</h2>
+          <a href class="card overflow-hidden postPlaceholder post-details">
+            <img class="card-image" :src="post.url" />
+          </a>
+          <div class="post-info">
+            <span>
+              <a href="#">{{post.points}} points</a>
+            </span> ·
+            <span>
+              <a href="#">{{post.comments.length}} comments</a>
+            </span>
+          </div>
+          <span class="button-container">
+            <span>
+              <button class="upvote">⇧</button>
+              <button class="downvote">⇩</button>
+              <button>&#128172;</button>
+            </span>
           </span>
+          <div class="line"></div>
         </div>
-        <span class="button-container">
-          <span>
-            <button class="upvote">⇧</button>
-            <button class="downvote">⇩</button>
-            <button>&#128172;</button>
-          </span>
-        </span>
-        <div class="line"></div>
       </div>
     </div>
-  </div>
+  </h1>
 </template>
 
 <script>
 export default {
-  name: "appContainer",
+  name: "appTrending",
   props: {},
   data() {
     return {
       posts: [
-        {
-          id: 1,
-          category: "Funny",
-          title: "Some funny title",
-          url: "https://img-9gag-fun.9cache.com/photo/a85xZbO_460s.jpg",
-          points: 152,
-          comments: [{ user: "gosho", msg: "nice one !" }],
-        },
         {
           id: 2,
           category: "WTF",
@@ -100,5 +95,8 @@ a {
   text-decoration: none;
   font-size: 15px;
   color: gray;
+}
+h1 {
+  text-align: center;
 }
 </style>

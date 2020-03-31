@@ -2,9 +2,9 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a href="/">
+        <router-link to="/">
           <img src="../assets/lоgo.jpg" style="width:100px" />
-        </a>
+        </router-link>
       </div>
     </div>
   </nav>
@@ -23,12 +23,11 @@ export default {
   background: black;
   text-align: center;
   overflow: hidden;
-  top:10%;
+  top: 10%;
   position: fixed;
-  top: 0; 
-  width: 100%; 
+  top: 0;
+  width: 100%;
   z-index: 1;
-  padding:5px;
 }
 .navbar-header {
   display: list-item;
@@ -37,5 +36,7 @@ export default {
 }
 .navbar-default {
   border-color: black;
+
+  display: -webkit-inline-box;
 }
 </style>

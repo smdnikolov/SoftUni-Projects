@@ -29,19 +29,11 @@
 
 <script>
 export default {
-  name: "appContainer",
+  name: "appTrending",
   props: {},
   data() {
     return {
       posts: [
-        {
-          id: 1,
-          category: "Funny",
-          title: "Some funny title",
-          url: "https://img-9gag-fun.9cache.com/photo/a85xZbO_460s.jpg",
-          points: 152,
-          comments: [{ user: "gosho", msg: "nice one !" }],
-        },
         {
           id: 2,
           category: "WTF",

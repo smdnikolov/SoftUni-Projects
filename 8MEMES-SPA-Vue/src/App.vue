@@ -8,30 +8,36 @@
           <app-categories />
           <app-footer />
         </div>
-        <div class="col-sm-4 center">
-          <app-container />
+        <div class="col-sm-4 right">
+          <app-side-nav-right />
+          <app-register />
+          <app-login />
         </div>
-        <div class="col-sm-4 right"></div>
       </div>
     </div>
+    <router-view />
   </div>
 </template>
 
 <script>
 import appNavigation from "./components/app-navigation.vue";
 import appFooter from "./components/app-footer.vue";
-import appContainer from "./components/app-container";
+import appSideNavRight from "./components/app-side-nav-right";
 import appSideNavigation from "./components/app-side-navigation";
 import appCategories from "./components/app-categories.vue";
+import appLogin from "./components/app-login";
+import appRegister from "./components/app-register";
 
 export default {
   name: "App",
   components: {
     appNavigation,
     appFooter,
-    appContainer,
     appSideNavigation,
-    appCategories
+    appCategories,
+    appSideNavRight,
+    appRegister,
+    appLogin
   }
 };
 </script>
@@ -49,7 +55,17 @@ body {
   position: relative;
   left: 33.3333%;
 }
+.right {
+  position: fixed;
+  text-align: center;
+  left: 66.6666%;
+}
 .row {
   margin-top: 100px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.line {
+  width: 100% !important;
 }
 </style>

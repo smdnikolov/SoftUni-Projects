@@ -1,21 +1,21 @@
 <template>
   <div class="sidenav">
-    <a href="/hot">
+    <router-link to="hot">
       <span>
         <img class="hot" src="../assets/hot.png" width="24" height="24" />
       </span> Hot
-    </a>
-    <a href="/trending">
+    </router-link>
+    <router-link to="trending">
       <span>
         <img src="../assets/trending-up-1486430-1257239.png" width="24" height="24" />
       </span> Trending
-    </a>
-    <a href="/fresh">
+    </router-link>
+    <router-link to="fresh">
       <span>
         <img src="../assets/fresh.png" width="24" height="24" />
       </span>
       Fresh
-    </a>
+    </router-link>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .sidenav {
-  display:inline;
+  display: inline;
 }
 
 .sidenav a {
