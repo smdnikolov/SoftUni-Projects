@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "appNavigation",
+  name: "appNavbar",
   props: {}
 };
 </script>

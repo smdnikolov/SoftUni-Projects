@@ -1,19 +1,24 @@
 <template>
   <div class="row">
-    Register
-    <div v-if="error" class="error">{{error.message}}</div>
-    <form @submit.prevent="clicked()">
-      <div class="container">
-        <h1>Register</h1>
-        <div class="email">
-          <input type="email" v-model="email" placeholder="email" />
+    <div class="col-sm-4 center">
+      <div v-if="error" class="error">{{error.message}}</div>
+      <form @submit.prevent="register()">
+        <div class="container">
+          <h1>Register</h1>
+          <div class="email">
+            <input type="email" v-model="email" placeholder="email" />
+          </div>
+          <div class="password">
+            <input type="password" v-model="password" placeholder="password" />
+          </div>
+          <button type="submit">Register</button>
         </div>
-        <div class="password">
-          <input type="password" v-model="password" placeholder="password" />
-        </div>
-        <button type="submit">Submit</button>
+      </form>
+      <div>
+        Have an account ?
+        <router-link to="/login">Log In</router-link>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -30,14 +35,14 @@ export default {
     };
   },
   methods: {
-    async clicked() {
+    async register() {
       window.localStorage.setItem("email", `${this.email}`);
       try {
         const user = await firebase
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password);
         console.log(user);
-        this.$router.replace({ name: "appContainer" });
+        this.$router.replace({ name: "appHome" });
       } catch (err) {
         alert(err);
       }

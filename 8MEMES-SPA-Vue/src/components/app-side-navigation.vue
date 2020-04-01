@@ -39,8 +39,11 @@ export default {
   color: gray;
   display: inline-block;
 }
-
 .sidenav a:hover {
-  color: #064579;
+  color: #f5860a;
 }
+.router-link-active {
+  color: #f5860a!important;
+}
+
 </style>

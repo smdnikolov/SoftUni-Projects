@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: "appContainer",
+  name: "appHot",
   props: {},
   data() {
     return {

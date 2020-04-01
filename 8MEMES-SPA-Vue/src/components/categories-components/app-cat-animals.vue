@@ -1,7 +1,7 @@
 <template>
-  <h1>Animals Memes
+<div>
+  <h1>Animals Memes</h1>
     <div class="row">
-      <h1></h1>
       <div class="col-sm-4 center">
         <div v-for="post in posts" :key="post.id" class="post">
           <h2>{{post.title}}</h2>
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-  </h1>
+  </div>
 </template>
 
 <script>
@@ -98,5 +98,6 @@ a {
 }
 h1 {
   text-align: center;
+   color: #f5860a;
 }
 </style>
