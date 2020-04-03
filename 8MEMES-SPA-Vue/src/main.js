@@ -7,6 +7,7 @@ import firebase from 'firebase/app'
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios;
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDb-AH9RNKENgxVFymLm2wEV2xA857LAqw",
   authDomain: "memes-587f6.firebaseapp.com",

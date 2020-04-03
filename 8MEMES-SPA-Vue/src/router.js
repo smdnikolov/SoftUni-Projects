@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import appHot from './components/app-hot.vue'
 import appTrending from './components/app-trending.vue'
+import appFresh from './components/app-fresh.vue'
 import appCatAnimals from './components/categories-components/app-cat-animals.vue'
 import appCatAnime from './components/categories-components/app-cat-anime.vue'
 import appCatAwesome from './components/categories-components/app-cat-awesome.vue'
@@ -12,6 +13,8 @@ import appCatWTF from './components/categories-components/app-cat-wtf.vue'
 import appLogin from './components/app-login.vue'
 import appRegister from './components/app-register.vue'
 import appHome from './components/app-home.vue'
+import appShare from './components/app-share.vue'
+import appMeme from './components/app-meme.vue'
 
 
 Vue.use(Router)
@@ -32,6 +35,11 @@ export default new Router({
             path: '/trending',
             name: 'appTrending',
             component: appTrending
+        },
+        {
+            path: '/fresh',
+            name: 'appFresh',
+            component: appFresh
         },
         {
             path: '/animals',
@@ -78,7 +86,16 @@ export default new Router({
             name: 'appRegister',
             component: appRegister
         },
-
+        {
+            path: '/share',
+            name: 'appShare',
+            component: appShare
+        },
+        {
+            path: `/meme/:id`,
+            name: 'appMeme',
+            component: appMeme
+        },
 
     ]
 })

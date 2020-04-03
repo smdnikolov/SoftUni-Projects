@@ -62,4 +62,13 @@ body {
 .line {
   width: 100% !important;
 }
+input {
+  border: 1px solid #f5860a !important;
+}
+select:focus {
+  outline-color: #f5860a;
+}
+select {
+  border: 1px solid #f5860a !important;
+}
 </style>

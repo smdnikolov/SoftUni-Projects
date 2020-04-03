@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello Friend</h1>
+    <h1 v-if="loggedIn">Hello Friend</h1>
     <div class="row">
       <div class="col-sm-4 center">
         <div class="container" v-if="loggedIn">
@@ -112,6 +112,13 @@ div {
   text-decoration: none;
   opacity: 0.7;
 }
+.button-large:focus {
+  text-decoration: none;
+  border: 1px #f5860a;
+  color: #f5860a;
+  outline: none;
+  opacity: 0.7;
+}
 .button {
   text-align: center;
   vertical-align: middle;
@@ -124,6 +131,13 @@ div {
   color: #f5860a;
   font-weight: bold;
   border: none;
+}
+.button:focus {
+  text-decoration: none;
+  border: 1px #f5860a;
+  color: #f5860a;
+  outline: none;
+  opacity: 0.7;
 }
 .button:hover {
   text-decoration: none;
