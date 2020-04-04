@@ -29,11 +29,20 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.loggedIn = !!user;
+      if (this.loggedIn) {
+        this.$router.replace({ name: "appLogged" });
+      }
+    });
+  },
   data() {
     return {
       email: "",
       password: "",
-      error: ""
+      error: "",
+      loggedIn: false
     };
   },
   methods: {
@@ -44,7 +53,8 @@ export default {
           .auth()
           .signInWithEmailAndPassword(this.email, this.password);
         console.log(user);
-        this.$router.replace({ name: "appHome" });
+        this.$router.go(-1);
+        //this.$router.replace({ name: "appHome" });
       } catch (err) {
         alert(err);
       }
@@ -64,7 +74,7 @@ export default {
 }
 ::placeholder {
   color: #f5860a;
-  opacity: 0.5; 
+  opacity: 0.5;
 }
 input:focus {
   color: #f5860a;

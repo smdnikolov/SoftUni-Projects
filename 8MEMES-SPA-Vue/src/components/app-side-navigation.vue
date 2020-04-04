@@ -1,16 +1,16 @@
 <template>
   <div class="sidenav">
-    <router-link to="hot">
+    <router-link to="/hot">
       <span>
         <img class="hot" src="../assets/hot.png" width="24" height="24" />
       </span> Hot
     </router-link>
-    <router-link to="trending">
+    <router-link to="/trending">
       <span>
         <img src="../assets/trending-up-1486430-1257239.png" width="24" height="24" />
       </span> Trending
     </router-link>
-    <router-link to="fresh">
+    <router-link to="/fresh">
       <span>
         <img src="../assets/fresh.png" width="24" height="24" />
       </span>

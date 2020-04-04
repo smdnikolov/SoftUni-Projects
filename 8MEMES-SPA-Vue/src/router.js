@@ -15,6 +15,8 @@ import appRegister from './components/app-register.vue'
 import appHome from './components/app-home.vue'
 import appShare from './components/app-share.vue'
 import appMeme from './components/app-meme.vue'
+import appLogged from './components/app-logged.vue'
+import appNotFound from './components/app-not-found.vue'
 
 
 Vue.use(Router)
@@ -89,13 +91,23 @@ export default new Router({
         {
             path: '/share',
             name: 'appShare',
-            component: appShare
+            component: appShare,
+
         },
         {
             path: `/meme/:id`,
             name: 'appMeme',
             component: appMeme
         },
-
+        {
+            path: `/logged`,
+            name: 'appLogged',
+            component: appLogged
+        },
+        {
+            path: "*",
+            name: "appNotFound",
+            component: appNotFound
+        }
     ]
 })

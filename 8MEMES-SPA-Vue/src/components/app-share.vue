@@ -37,11 +37,28 @@
 <script>
 import axios from "axios";
 import categories from "../categories";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 export default {
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.user = !!user;
+      this.loggedIn = !!user;
+      if (this.user) {
+        this.userMail = user.email;
+      } else if (!this.loggedIn) {
+        this.$router.replace({ name: "appHome" });
+      }
+    });
+  },
   data() {
     return {
       categories: categories,
+      user: "",
+      userMail: "",
+      error: "",
+      loggedIn: false,
       meme: {
         title: "",
         imageURL: "",
@@ -49,9 +66,10 @@ export default {
         upvotes: 0,
         catSrc: "",
         catLink: "",
-        voted: ""
-      },
-      error: ""
+        voted: ["test"],
+        comments: [["test", "test"]],
+        creator: ""
+      }
     };
   },
   methods: {
@@ -61,11 +79,12 @@ export default {
       );
       this.meme.catSrc = currentCat[0].src;
       this.meme.catLink = currentCat[0].link;
-      this.meme.voted = ["test"];
-
+      this.meme.creator = this.userMail;
       axios
         .post("https://memes-587f6.firebaseio.com/memes.json", this.meme)
-        .then(() => this.$router.push("fresh"))
+        .then(data => {
+          this.$router.push(`/meme/${data.data.name}`);
+        })
         .catch(err => (this.error = err));
     }
   }

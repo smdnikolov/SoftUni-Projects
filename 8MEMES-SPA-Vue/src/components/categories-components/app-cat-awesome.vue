@@ -1,57 +1,181 @@
 <template>
-<div>
-  <h1>Awesome Memes</h1>
-    <div class="row">
-      <div class="col-sm-4 center">
-        <div v-for="post in posts" :key="post.id" class="post">
-          <h2>{{post.title}}</h2>
-          <a href class="card overflow-hidden postPlaceholder post-details">
-            <img class="card-image" :src="post.url" />
-          </a>
+  <div class="row">
+    <div v-if="loading" class="col-sm-4 center">
+      <h1 style="text-align:center">
+        <div class="lds-ripple">
+          <div></div>
+          <div></div>
+        </div>
+      </h1>
+      <h1 style="color:#f5860a;text-align:center">Loading...</h1>
+    </div>
+    <div v-else>
+      <div class="msg" v-if="!user">
+        You should
+        <router-link to="/login">Login&nbsp;</router-link>to comment or vote.
+      </div>
+      <div v-if="memes.length>0" class="col-sm-4 center">
+        <div v-for="(meme,index) in memes" :key="meme.id" class="post">
+          <router-link :to="meme.link">
+            <img :src="meme.catSrc" width="25px" height="25px" />
+            {{meme.category}}
+          </router-link>
+          <h2>{{meme.title}}</h2>
+          <router-link
+            :to="'/meme/'+meme.id"
+            class="card overflow-hidden postPlaceholder post-details"
+          >
+            <img class="card-image" :src="meme.imageURL" />
+          </router-link>
           <div class="post-info">
             <span>
-              <a href="#">{{post.points}} points</a>
+              <router-link :to="'/meme/'+meme.id">{{meme.upvotes}} points</router-link>
             </span> ·
             <span>
-              <a href="#">{{post.comments.length}} comments</a>
+              <router-link :to="'/meme/'+meme.id+'#comments'">{{meme.comments.length-1}} comments</router-link>
             </span>
           </div>
-          <span class="button-container">
-            <span>
-              <button class="upvote">⇧</button>
-              <button class="downvote">⇩</button>
-              <button>&#128172;</button>
+          <span v-if="user" class="button-container">
+            <span v-if="!meme.voted.includes(userMail)">
+              <button @click="upvote(meme.id,memes,index,$event)" class="upvote">⇧</button>
+              <button @click="downvote(meme.id,memes,index,$event)" class="downvote">⇩</button>
+              <button @click="goToComments(meme.id)">&#128172;</button>
+            </span>
+            <span v-else>
+              <button @click="upvote(meme.id,memes,index,$event)" class="voted" disabled>⇧</button>
+              <button @click="downvote(meme.id,memes,index,$event)" class="voted" disabled>⇩</button>
+              <button @click="goToComments(meme.id)">&#128172;</button>
             </span>
           </span>
+
           <div class="line"></div>
         </div>
+      </div>
+      <div v-else class="col-sm-4 center" style="text-align:center">
+        <p style="font-size:35px;color=gray"></p>
+        <p style="font-size:35px;color=gray">
+          There are no memes in the category yet, be the first to
+          <router-link to="/share" style="font-size:35px">share&nbsp;</router-link>
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
 export default {
-  name: "appTrending",
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged(user => {
+      this.user = !!user;
+      if (this.user) {
+        this.userMail = user.email;
+      }
+      axios
+        .get("https://memes-587f6.firebaseio.com/memes/.json")
+        .then(data => {
+          data = Object.entries(Object.values(data)[0]);
+          data.forEach(element => {
+            if (element[1].category === "Awesome") {
+              this.memes.push({
+                id: element[0],
+                category: element[1].category,
+                imageURL: element[1].imageURL,
+                title: element[1].title,
+                upvotes: element[1].upvotes,
+                catSrc: element[1].catSrc,
+                link: element[1].catLink,
+                voted: element[1].voted,
+                comments: element[1].comments
+              });
+            }
+
+            this.loading = false;
+            this.memes = this.memes.sort((a, b) => {
+              return b.upvotes - a.upvotes;
+            });
+          });
+        })
+        .catch(err => (this.error = err));
+    });
+  },
+
   props: {},
   data() {
     return {
-      posts: [
-        {
-          id: 2,
-          category: "WTF",
-          title: "Two strange ladies",
-          url:
-            "https://media1.giphy.com/media/3oKIPmUUz1MT9u3UA0/200.webp?cid=ecf05e47e7bae4afd0ab9004ce54274dc17afbd6ab487574&rid=200.webp",
-          points: 12,
-          comments: []
-        }
-      ]
+      loading: true,
+      memes: [],
+      user: "",
+      userMail: ""
     };
+  },
+  methods: {
+    upvote(id, memes, index, e) {
+      let upvotes;
+      let voted = [];
+      axios
+        .get(`https://memes-587f6.firebaseio.com/memes/${id}.json`)
+        .then(data => {
+          upvotes = data.data.upvotes;
+          if (data.data.voted !== undefined) {
+            voted = [...data.data.voted];
+            if (voted.indexOf(this.userMail) === -1) {
+              voted.push(this.userMail);
+            }
+          } else {
+            voted.push(this.userMail);
+          }
+          upvotes++;
+          axios
+            .patch(
+              `https://memes-587f6.firebaseio.com/memes/${id}.json`,
+              (id = {
+                upvotes,
+                voted
+              })
+            )
+            .catch(err => console.log(err));
+          memes[index].upvotes++;
+          e.target.parentNode.children[0].disabled = true;
+          e.target.parentNode.children[0].classList.add("voted");
+          e.target.parentNode.children[1].disabled = true;
+          e.target.parentNode.children[1].classList.add("voted");
+        })
+        .catch(err => console.log(err));
+    },
+
+    downvote(id, memes, index, e) {
+      let upvotes;
+      axios
+        .get(`https://memes-587f6.firebaseio.com/memes/${id}.json`)
+        .then(data => {
+          upvotes = data.data.upvotes;
+          upvotes--;
+          axios
+            .patch(
+              `https://memes-587f6.firebaseio.com/memes/${id}.json`,
+              (id = {
+                upvotes
+              })
+            )
+            .catch(err => console.log(err));
+          memes[index].upvotes--;
+          e.target.parentNode.children[0].disabled = true;
+          e.target.parentNode.children[0].classList.add("voted");
+          e.target.parentNode.children[1].disabled = true;
+          e.target.parentNode.children[1].classList.add("voted");
+        })
+        .catch(err => console.log(err));
+    },
+    goToComments(id) {
+      this.$router.push(`meme/${id}#comments`);
+    }
   }
 };
 </script>
-
 
 <style scoped>
 .card-image {
@@ -82,6 +206,7 @@ button {
   height: 47px;
   border-bottom: 2px solid #ddd;
   display: inline-block;
+  margin-bottom: 35px;
 }
 h2 {
   float: none;
@@ -96,8 +221,47 @@ a {
   font-size: 15px;
   color: gray;
 }
-h1 {
+a:hover {
+  color: #f5860a;
+}
+.msg {
   text-align: center;
-   color: #f5860a;
+}
+.voted {
+  color: #f5860a;
+  opacity: 0.5;
+}
+.lds-ripple {
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ripple div {
+  position: absolute;
+  border: 4px solid #f5860a;
+  opacity: 1;
+  border-radius: 50%;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.lds-ripple div:nth-child(2) {
+  animation-delay: -0.5s;
+}
+@keyframes lds-ripple {
+  0% {
+    top: 36px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+  }
 }
 </style>
