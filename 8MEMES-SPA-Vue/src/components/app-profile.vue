@@ -1,25 +1,27 @@
 <template>
   <div>
     <div class="row">
+      <img
+        class="greeter"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTKFmgrxjUQda1BgI7YSa9ka-RlUZIh2MQpFfTk6i_SsQxJLh8J&usqp=CAU"
+        style="width:300px;height:300px;border-radius:10px"
+        alt
+      />
+      <h2>
+        User email:
+        <b>{{user}}</b>
+      </h2>
+
       <div class="col-sm-4 center">
         <div class="container">
+          <h2>Check the memes which you have</h2>
           <div>
-            <div>
-              <p>
-                <span>You are already logged in</span>
-
-                <img
-                  src="https://media3.giphy.com/media/fDO2Nk0ImzvvW/giphy.gif?cid=ecf05e4780238f623037582fb573c0c386a2983f9b2cb48c&rid=giphy.gif"
-                  height="400px"
-                  alt
-                />
-              </p>
-            </div>
-            <div>
-              <span>
-                <router-link class="button" to="/">Go Home</router-link>
-              </span>
-            </div>
+            <span>
+              <router-link class="button" to="/created">Created</router-link>
+            </span>
+            <span>
+              <router-link class="button" to="/commented">Commented</router-link>
+            </span>
           </div>
         </div>
       </div>
@@ -32,11 +34,11 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
-  beforeCreate() {
+  created() {
     firebase.auth().onAuthStateChanged(user => {
-      this.loggedIn = !!user;
-      if (!this.loggedIn) {
-        this.$router.replace({ name: "appHome" });
+      if (user) {
+        this.loggedIn = !!user;
+        this.user = user.email;
       }
     });
   },
@@ -44,7 +46,8 @@ export default {
   props: {},
   data() {
     return {
-      loggedIn: false
+      loggedIn: false,
+      user: "test"
     };
   },
   methods: {}
@@ -56,12 +59,36 @@ export default {
 div {
   text-align: center;
 }
-
+.greeter {
+  padding-top: 30px;
+}
 .container {
   text-align: center;
   display: inline;
 }
-
+.button-large {
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  width: 115px;
+  background: black;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  color: #f5860a;
+  font-weight: bold;
+}
+.button-large:hover {
+  text-decoration: none;
+  opacity: 0.7;
+}
+.button-large:focus {
+  text-decoration: none;
+  border: 1px #f5860a;
+  color: #f5860a;
+  outline: none;
+  opacity: 0.7;
+}
 .button {
   text-align: center;
   vertical-align: middle;
@@ -75,7 +102,13 @@ div {
   font-weight: bold;
   border: none;
 }
-
+.button:focus {
+  text-decoration: none;
+  border: 1px #f5860a;
+  color: #f5860a;
+  outline: none;
+  opacity: 0.7;
+}
 .button:hover {
   text-decoration: none;
   opacity: 0.7;
@@ -113,7 +146,7 @@ p {
     background-position: 100% 50%;
   }
 }
-h1 {
+h2 {
   text-align: center;
   color: #f5860a;
 }

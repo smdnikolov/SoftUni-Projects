@@ -40,10 +40,21 @@ export default {
 body {
   font-family: "Oxanium", cursive;
 }
+/* .left {
+  float: left;
+  position: fixed;
+  text-align: center;
+  left: -6%;
+  
+} */
 .left {
   float: left;
   position: fixed;
   text-align: center;
+  border: 2px #f5860a solid;
+  border-radius: 10px;
+  background: #f2f2f2;
+  width: 14%;
 }
 .center {
   position: relative;
@@ -52,7 +63,7 @@ body {
 .right {
   position: fixed;
   text-align: center;
-  left: 66.6666%;
+  left: 70.5%;
 }
 .row {
   margin-top: 100px;
@@ -70,5 +81,13 @@ select:focus {
 }
 select {
   border: 1px solid #f5860a !important;
+}
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  /* text-decoration: none; */
+  font-size: 25px;
+  color: gray;
+  display: grid;
+  /* display: inline-block; */
 }
 </style>

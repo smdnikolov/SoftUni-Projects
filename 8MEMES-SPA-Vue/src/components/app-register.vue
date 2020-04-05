@@ -29,14 +29,6 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
-  beforeCreate() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.loggedIn = !!user;
-      if (this.loggedIn) {
-        this.$router.replace({ name: "appLogged" });
-      }
-    });
-  },
   data() {
     return {
       email: "",
@@ -47,18 +39,13 @@ export default {
   },
   methods: {
     async register() {
-      window.localStorage.setItem("email", `${this.email}`);
-      try {
-        const user = await firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.email, this.password);
-        this.$router.go(-1);
-        console.log(user);
-        //this.$router.replace({ name: "appHome" });
-      } catch (err) {
-        this.error = err;
-        alert(err);
-      }
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.replace({ name: "appHome" });
+        })
+        .catch(err => console.log(err));
     }
   }
 };
