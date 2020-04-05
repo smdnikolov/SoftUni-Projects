@@ -59,7 +59,8 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
-  beforeCreate() {
+  created() {
+    console.log(1);
     firebase.auth().onAuthStateChanged(user => {
       this.loggedIn = !!user;
     });
