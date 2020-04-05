@@ -9,8 +9,7 @@
                 <span>Opps nothing found here</span>
 
                 <img
-                  src="https://media3.giphy.com/media/10RgsuetO4uDkY/giphy.webp?cid=ecf05e47acba36b4fd94771fd1e3b6a0e0bf2ccf801b948f&rid=giphy.webp"
-                  height="400px"
+                  src="https://media0.giphy.com/media/xTiN0L7EW5trfOvEk0/giphy.webp?cid=ecf05e4794e0733090711aebcdf68600eb0a24f94f68f4a1&rid=giphy.webp"
                   alt
                 />
               </p>

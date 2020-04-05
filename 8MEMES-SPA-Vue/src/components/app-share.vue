@@ -20,6 +20,7 @@
                 <option value="Animals">Animals</option>
                 <option value="Anime">Anime</option>
                 <option value="Awesome">Awesome</option>
+                <option value="Coronavirus">Coronavirus</option>
                 <option value="Funny">Funny</option>
                 <option value="Gaming">Gaming</option>
                 <option value="NSFW">NSFW</option>
@@ -37,21 +38,8 @@
 <script>
 import axios from "axios";
 import categories from "../categories";
-import * as firebase from "firebase/app";
-import "firebase/auth";
 
 export default {
-  beforeCreate() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.user = !!user;
-      this.loggedIn = !!user;
-      if (this.user) {
-        this.userMail = user.email;
-      } else if (!this.loggedIn) {
-        this.$router.replace({ name: "appHome" });
-      }
-    });
-  },
   data() {
     return {
       categories: categories,

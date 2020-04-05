@@ -18,6 +18,11 @@ const categories = [
         link: "/awesome"
     },
     {
+        name: "Coronavirus",
+        src: "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1584508226.1928_evY7UG_100x100wp.webp",
+        link: "/coronavirus"
+    },
+    {
         name: "Funny",
         src:
             "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1557376304.186_U5U7u5_100x100wp.webp",
@@ -40,6 +45,6 @@ const categories = [
         src:
             "https://miscmedia-9gag-fun.9cache.com/images/thumbnail-facebook/1557310702.1267_UgysAp_100x100wp.webp",
         link: "/wtf"
-    }
+    },
 ]
 export default categories

@@ -51,18 +51,20 @@ export default {
   text-decoration-style: dashed;
 }
 img {
-  width: 45px;
+  width: 86px;
 }
 ul {
   width: 100%;
   text-align: center;
   font-size: 20px;
-  display: inline-block;
+  display: table;
   padding: 0;
 }
 li {
-  display: list-item;
+  text-align: center;
+  display: inline-table;
   padding: 5px;
+  width: 100px;
 }
 p {
   padding-top: 5px;

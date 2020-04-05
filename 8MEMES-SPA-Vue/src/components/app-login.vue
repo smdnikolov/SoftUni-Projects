@@ -29,35 +29,24 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
-  beforeCreate() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.loggedIn = !!user;
-      if (this.loggedIn) {
-        this.$router.replace({ name: "appLogged" });
-      }
-    });
-  },
   data() {
     return {
       email: "",
       password: "",
-      error: "",
-      loggedIn: false
+      error: ""
     };
   },
   methods: {
-    async logIn() {
-      window.localStorage.setItem("email", `${this.email}`);
-      try {
-        const user = await firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password);
-        console.log(user);
-        this.$router.go(-1);
-        //this.$router.replace({ name: "appHome" });
-      } catch (err) {
-        alert(err);
-      }
+    logIn() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push("/");
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
     }
   }
 };

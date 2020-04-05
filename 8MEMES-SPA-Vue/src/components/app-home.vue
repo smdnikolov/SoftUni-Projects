@@ -65,7 +65,6 @@ export default {
       this.loggedIn = !!user;
     });
   },
-  name: "appHome",
   props: {},
   data() {
     return {
@@ -73,14 +72,9 @@ export default {
     };
   },
   methods: {
-    async logOut() {
-      try {
-        const data = await firebase.auth().signOut();
-        this.$router.replace({ name: "appHome" });
-        console.log(data);
-      } catch (err) {
-        alert(err);
-      }
+    logOut() {
+      this.loggedIn = false;
+      firebase.auth().signOut();
     }
   }
 };
@@ -98,29 +92,7 @@ div {
   text-align: center;
   display: inline;
 }
-.button-large {
-  text-align: center;
-  vertical-align: middle;
-  display: inline-block;
-  width: 115px;
-  background: black;
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-  color: #f5860a;
-  font-weight: bold;
-}
-.button-large:hover {
-  text-decoration: none;
-  opacity: 0.7;
-}
-.button-large:focus {
-  text-decoration: none;
-  border: 1px #f5860a;
-  color: #f5860a;
-  outline: none;
-  opacity: 0.7;
-}
+
 .button {
   text-align: center;
   vertical-align: middle;
@@ -134,13 +106,7 @@ div {
   font-weight: bold;
   border: none;
 }
-.button:focus {
-  text-decoration: none;
-  border: 1px #f5860a;
-  color: #f5860a;
-  outline: none;
-  opacity: 0.7;
-}
+
 .button:hover {
   text-decoration: none;
   opacity: 0.7;
